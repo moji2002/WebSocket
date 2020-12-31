@@ -1,5 +1,4 @@
-const { default: axios } = require('axios');
-const { log } = require('console');
+const axios = require('axios');
 const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
