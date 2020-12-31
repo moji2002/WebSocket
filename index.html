@@ -6,21 +6,33 @@
 </head>
 
 <body>
-  <input id="input"></input>
-  <button id="btn">send</button>
+  <h4>Live prices using WebSocket</h4>
+  <label for="coins">Coin:</label>
+
+  <select name="coins" id="coins" style="margin-bottom: 10px;">
+    <option value="BTC_to_USD">Bitcoin</option>
+    <option value="BCH_to_USD">Bitcoin cash</option>
+    <option value="ETH_to_USD">Etheriom</option>
+  </select>
+
+  <span id="display" style="display: block;"></span>
   <script src="/socket.io/socket.io.js"></script>
   <script>
     const socket = io();
     socket.on('price', (e) => {
-      console.log(e);
+      document.getElementById("display").innerText = e
     });
 
     const btn = document.getElementById('btn')
-    const input = document.getElementById("input")
+    const input = document.getElementById("coins")
 
-    btn.addEventListener('click', () => {
+    setInterval(() => {
       socket.emit('price', input.value)
-    })
+    }, 300)
+
+    // btn.addEventListener('click', () => {
+    //   socket.emit('price', input.value)
+    // })
   </script>
 </body>
 
