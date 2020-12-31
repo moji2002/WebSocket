@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Socket.IO chat</title>
+</head>
+
+<body>
+  <input id="input"></input>
+  <button id="btn">send</button>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    socket.on('price', (e) => {
+      console.log(e);
+    });
+
+    const btn = document.getElementById('btn')
+    const input = document.getElementById("input")
+
+    btn.addEventListener('click', () => {
+      socket.emit('price', input.value)
+    })
+  </script>
+</body>
+
+</html>
